@@ -1,0 +1,19 @@
+{
+    "name": "title-in-sidebar",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "start": "wp-scripts start",
+        "build": "wp-scripts build"
+    },
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "@wordpress/scripts": "^17.0.0"
+    },
+    "dependencies": {
+        "@wordpress/edit-post": "^4.2.0",
+        "@wordpress/plugins": "^3.2.0"
+    }
+}
