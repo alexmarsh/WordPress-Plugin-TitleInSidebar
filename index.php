@@ -5,17 +5,30 @@
   * Version: 1.0.0
   * Author: Alex Marsh
   * Author URI: helloflynn.com
+  *
+  * Use "tis" prefix for "title in sidebar"
   */
+
+
+// avoid direct access to this folder
 if( ! defined( 'ABSPATH') ) {
     exit;
 }
 
-// Note that it’s a best practice to prefix function names (e.g. myprefix)
-function myprefix_enqueue_assets() {
+// Enqueue assets
+add_action( 'enqueue_block_editor_assets', 'tis_enqueue_assets' );
+function tis_enqueue_assets() {
+    // main script
     wp_enqueue_script(
-        'myprefix-gutenberg-sidebar',
-        plugins_url( 'build/index.js', __FILE__ ),
-        array( 'wp-plugins', 'wp-edit-post', 'wp-i18n', 'wp-element', 'wp-data' )
+        'tis-gutenberg-scripts', // name
+        plugins_url( 'build/index.js', __FILE__ ), // location
+        array( 'wp-plugins', 'wp-edit-post', 'wp-i18n', 'wp-element', 'wp-data' ) // dependencies
+    );
+    // styles
+    wp_enqueue_style(
+        'tis-gutenberg-styles', // name
+        plugins_url( 'assets/styles/style.css', __FILE__ ), // location
     );
 }
-add_action( 'enqueue_block_editor_assets', 'myprefix_enqueue_assets' );
+
+?>

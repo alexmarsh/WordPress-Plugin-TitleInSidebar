@@ -5,39 +5,9 @@ import { TextControl } from "@wordpress/components";
 import { withSelect, withDispatch, dispatch, select } from "@wordpress/data";
 import { __ } from "@wordpress/i18n";
 
-let TextController = props => (
-    <TextControl
-        label={__("Title", 'textdomain')}
-        value={select('core/editor').getEditedPostAttribute('title')}
-        onChange={ (value) => setAttributes({ title: value }) }
-    />
-);
 
-TextController = withSelect(
-    select => ({
-        title: select('core/editor').getEditedPostAttribute('title')
-    })
-)(TextController);
-
-TextController = withDispatch(
-    (dispatch) => {
-        return {
-            onMetaFieldChange: (value) => {
-                dispatch('core/editor').editPost({ title: value })
-            }
-        }
-    }
-)(TextController);
-
+// define new component wrapper for a document settings panel
 const TitleDocumentSettingPanel = () => {
-    /*
-    // Check if a value has been set
-    // This is for editing a post, because you don't want to override it everytime
-    if (!select('core/editor').getEditedPostAttribute('title')) {
-        // Set initial value
-        dispatch('core/editor').editPost({ meta: { _myprefix_text_metafield: 'Your custom value' } });
-    }
-    */
     return (
         <PluginDocumentSettingPanel
             name="page-title-panel"
@@ -50,7 +20,37 @@ const TitleDocumentSettingPanel = () => {
     )
 };
 
+// custom text controller component using WordPress TextControl component
+let TextController = (props) => (
+    <TextControl
+        label = {__("Title", 'textdomain')}
+        value = {props.title}
+        onChange = {(value) => props.onFieldChange(value)}
+    />
+);
+
+// update component whenever a prop is changed
+TextController = withSelect(
+    (select) => {
+        return {
+            title: select('core/editor').getEditedPostAttribute('title')
+        }
+    }
+)(TextController);
+
+// dispatch the editPost action whenever we type into the text field
+TextController = withDispatch(
+    (dispatch) => {
+        return {
+            onFieldChange: (value) => {
+                dispatch('core/editor').editPost({ title: value })
+            }
+        }
+    }
+)(TextController);
+
+// REGISTER NEW PLUGIN
 registerPlugin( 'title-in-sidebar', {
     icon: '',
     render: TitleDocumentSettingPanel,
-})
+});
