@@ -10,13 +10,13 @@
     "author": "",
     "license": "ISC",
     "devDependencies": {
-        "@wordpress/scripts": "^17.0.0"
+        "@wordpress/scripts": "^30.11.0"
     },
     "dependencies": {
-        "@wordpress/components": "^14.2.0",
-        "@wordpress/data": "^5.2.0",
-        "@wordpress/edit-post": "^4.2.0",
-        "@wordpress/i18n": "^4.2.0",
-        "@wordpress/plugins": "^3.2.0"
+        "@wordpress/components": "^29.4.0",
+        "@wordpress/data": "^10.18.0",
+        "@wordpress/edit-post": "^8.18.0",
+        "@wordpress/i18n": "^5.18.0",
+        "@wordpress/plugins": "^7.18.0"
     }
 }
