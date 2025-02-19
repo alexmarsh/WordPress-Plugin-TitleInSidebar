@@ -1,10 +1,9 @@
 // IMPORT WP FUNCTIONS
 import { registerPlugin } from "@wordpress/plugins";
-import { PluginDocumentSettingPanel } from "@wordpress/edit-post";
+import { PluginDocumentSettingPanel } from "@wordpress/editor";
 import { TextControl } from "@wordpress/components";
 import { withSelect, withDispatch, dispatch, select } from "@wordpress/data";
 import { __ } from "@wordpress/i18n";
-
 
 // define new component wrapper for a document settings panel
 const TitleDocumentSettingPanel = () => {
