@@ -18,7 +18,7 @@ if( ! defined( 'ABSPATH') ) {
 // Enqueue assets
 add_action( 'enqueue_block_editor_assets', 'tis_enqueue_assets' );
 function tis_enqueue_assets() {
-    // main script
+    // Enqueue main script for editor
     wp_enqueue_script(
         'tis-gutenberg-scripts', // name
         plugins_url( 'build/index.js', __FILE__ ), // location
@@ -26,8 +26,13 @@ function tis_enqueue_assets() {
         filemtime( plugin_dir_path( __FILE__ ) . 'build/index.js' ) // version (cache busting)
     );
 
-    // main style
-    add_editor_style( plugins_url( 'assets/styles/style.css', __FILE__ ) );
+    // Enqueue editor styles
+    wp_enqueue_style(
+        'tis-editor-styles', // name
+        plugins_url( 'assets/styles/style.css', __FILE__ ), // location
+        array(), // dependencies
+        filemtime( plugin_dir_path( __FILE__ ) . 'assets/styles/style.css' ) // version (cache busting)
+    );
 }
 
 ?>
